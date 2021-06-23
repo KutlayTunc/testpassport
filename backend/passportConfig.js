@@ -1,6 +1,6 @@
-const User = require('./user')
-const bcrypt = require('bcrypt')
-const localStrategy = require('passport-local').Strategy
+const User = require("./user")
+const bcrypt = require("bcryptjs")
+const localStrategy = require("passport-local").Strategy
 
 module.exports = function (passport) {
   passport.use(
@@ -26,7 +26,7 @@ module.exports = function (passport) {
   })
   //takes that cookie and unravels it and returns a user
   passport.deserializeUser((id, cb) => {
-    User.findOne({ _id: id }, (Err, user) => {
+    User.findOne({ _id: id }, (err, user) => {
       cb(err, user)
     })
   })

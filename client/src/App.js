@@ -1,54 +1,54 @@
-import React, { useState } from 'react'
-import './App.css'
-import axios from 'axios'
+import React, { useState } from "react"
+import "./App.css"
+import axios from "axios"
 
 function App() {
-  const [registerUserName, setRegisterUsername] = useState('')
-  const [registerPassword, setRegisterPassword] = useState('')
-  const [loginUserName, setLoginUsername] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
+  const [registerUserName, setRegisterUsername] = useState("")
+  const [registerPassword, setRegisterPassword] = useState("")
+  const [loginUserName, setLoginUsername] = useState("")
+  const [loginPassword, setLoginPassword] = useState("")
   const [data, setData] = useState(null)
 
   const register = () => {
     axios({
-      method: 'post',
+      method: "post",
       data: {
         username: registerUserName,
         password: registerPassword,
       },
       withCredentials: true,
-      url: 'http://localhost:7070/register',
+      url: "http://localhost:7070/register",
     }).then((res) => console.log(res))
   }
   const login = () => {
     axios({
-      method: 'post',
+      method: "post",
       data: {
         username: loginUserName,
         password: loginPassword,
       },
       withCredentials: true,
-      url: 'http://localhost:7070/login',
+      url: "http://localhost:7070/login",
     }).then((res) => console.log(res))
   }
   const getUser = () => {
     axios({
-      method: 'get',
+      method: "get",
       withCredentials: true,
-      url: 'http://localhost:7070/user',
-    }).then((res) => console.log(res))``
+      url: "http://localhost:7070/user",
+    }).then((res) => setData(res.data))
   }
 
   return (
-    <div className='App'>
+    <div className="App">
       <div>
         <h1>Register</h1>
         <input
-          placeHolder='username'
+          placeHolder="username"
           onChange={(e) => setRegisterUsername(e.target.value)}
         />
         <input
-          placeHolder='password'
+          placeHolder="password"
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
         <button onClick={register}>Submit</button>
@@ -56,11 +56,11 @@ function App() {
       <div>
         <h1>Login</h1>
         <input
-          placeHolder='username'
+          placeHolder="username"
           onChange={(e) => setLoginUsername(e.target.value)}
         />
         <input
-          placeHolder='password'
+          placeHolder="password"
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <button onClick={login}>Submit</button>
